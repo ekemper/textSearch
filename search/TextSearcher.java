@@ -8,6 +8,9 @@ import search.TextTokenizer;
 
 public class TextSearcher {
 
+	private TextTokenizer tokenizer;
+	private String wordRegex;
+
 	/**
 	 * Initializes the text searcher with the contents of a text file. The current
 	 * implementation just reads the contents into a string and passes them to
@@ -17,9 +20,6 @@ public class TextSearcher {
 	 * @throws IOException
 	 */
 	public TextSearcher(File f) throws IOException {
-
-		this.tokenizer = null;
-		this.wordRegex = null;
 
 		FileReader r = new FileReader(f);
 		StringWriter w = new StringWriter();
@@ -54,7 +54,11 @@ public class TextSearcher {
 	 * @return One context string for each time the query word appears in the file.
 	 */
 	public String[] search(String queryWord, int contextWords) {
-		// TODO -- fill in implementation
+
+		boolean result = this.tokenizer.isWord(queryWord);
+
+		System.out.print("\n\n matcher result : " + result + "\n\n");
+
 		return new String[0];
 	}
 }

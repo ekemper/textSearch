@@ -82,9 +82,6 @@ public class TextTokenizer implements Iterator<String> {
 	 * otherwise returns false.
 	 */
 	public boolean isWord(String s) {
-		boolean result = wordPattern.matcher(s).matches();
-		System.out.print("\n\n matcher result : " + result + "\n\n");
-
 		return wordPattern.matcher(s).matches();
 	}
 

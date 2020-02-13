@@ -28,7 +28,7 @@ public class TextSearcherTest {
 		TextSearcher searcher = new TextSearcher(file);
 		String[] results = searcher.search("sketch", 0);
 
-		System.out.print("\n\nsearch results : " + Arrays.toString(results) + "\n\n");
+		System.out.print("\n\nin test: search results : " + Arrays.toString(results) + "\n\n");
 
 		assertArraysEqual(expected, results);
 	}
