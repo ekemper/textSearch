@@ -13,7 +13,13 @@ class SearchCLI {
 
     gatherInput() {
         this.readline.question(`\n\nEnter a search term: \n\n -->  `, word => {
-            console.log(this.searchText(word))
+            const result = this.searchText(word)
+            const message = result
+                ? result
+                : `\n\nSorry, we could not find "${word}" in the text...\n\n`
+
+            console.log(message)
+
             this.gatherInput()
         })
     }

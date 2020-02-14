@@ -2,16 +2,11 @@ const searchText = require('../Search')
 
 const assert = require('assert');
 
-describe('Basic Mocha String Test', function () {
+describe('searchText', function () {
 
     it('should search', function () {
-        const result = searchText('pre')
+        const result = searchText('pre', 4)
 
         assert.equal(result, 4);
     });
-
-    // it('should return first charachter of the string', function () {
-    //     assert.equal("Hello".charAt(0), 'H');
-    // });
-
 });
