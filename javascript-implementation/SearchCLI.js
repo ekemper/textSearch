@@ -1,4 +1,4 @@
-const searchText = require('./Search')
+const searchText = require('./TextSearcher')
 
 class SearchCLI {
     constructor() {
@@ -13,7 +13,7 @@ class SearchCLI {
 
     gatherInput() {
         this.readline.question(`\n\nEnter a search term: \n\n -->  `, word => {
-            const result = this.searchText(word)
+            const result = this.searchText(word, 3) // TODO parametrize context words count
             const message = result
                 ? result
                 : `\n\nSorry, we could not find "${word}" in the text...\n\n`
