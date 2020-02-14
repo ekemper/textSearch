@@ -1,10 +1,13 @@
 const fs = require('fs');
 
-class generateMap {
+class WordHashGenerator {
     constructor() {
         this.hash = {}
 
         this.text = fs.readFileSync('../files/short_excerpt.txt', 'utf8')
+
+        // we will pop the words off of this string as we match them
+        this.textTemp = this.text
 
         this.wordList = this.text
             .split(/[^A-Za-z]/) // split on non letter chars
@@ -20,7 +23,11 @@ class generateMap {
 
         this.wordList.map(word => {
 
-            const newEntry = { startIndex: this.text.toLowerCase().indexOf(word) }
+            const newEntry = { startIndex: this.textTemp.toLowerCase().indexOf(word) }
+
+            // remove the 
+            this.textTemp = this.textTemp.substr(0, newEntry.startIndex)
+                + this.textTemp.substr(newEntry.startIndex + word.length);
 
             const wordExistsInHash = !!this.hash[word]
 
@@ -34,10 +41,11 @@ class generateMap {
 
 
 
-        console.log({ wordList: this.wordList })
+        // console.log({ wordList: this.wordList })
 
-        console.log(this.hash)
+        // console.log(this.hash)
     }
 
 }
-const generateMapInstance = new generateMap()
+
+module.exports = new WordHashGenerator()
