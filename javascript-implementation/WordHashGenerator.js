@@ -4,15 +4,18 @@ class WordHashGenerator {
     constructor(filePath) {
         this.hash = {}
 
-        this.text = fs.readFileSync(filePath, 'utf8').replace(/\n|\r/g, ' ')
+        this.text = fs.readFileSync(filePath, 'utf8')//.replace(/\n|\r/g, ' ')
 
         this.wordList = this.text
-            .split(/[^A-Za-z\-]/) // split on non letter chars
-            // TODO why did the regex leave some empty strings? not matching punctuation ?
-            .map(word => word.toLowerCase())
-            .filter(word => word.length)
+            .split(/\W+/g) // TODO : need to refine regex to match words
+        // TODO why did the regex leave some empty strings? not matching punctuation ?
+        //.map(word => word.toLowerCase())
 
-        this.generate()
+        //.filter(word => word.length)
+
+        console.log({ 'wordlist': this.wordList })
+
+        // this.generate()
     }
 
     generate() {
@@ -36,7 +39,7 @@ class WordHashGenerator {
             }
         })
 
-        //console.log(this.hash)
+        console.log(this.hash)
     }
 
 }

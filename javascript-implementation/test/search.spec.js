@@ -1,6 +1,6 @@
 const Search = require('../TextSearcher')
 // the path to the text file is relative to the wordHashGenterator file, could make this cleaner
-const shortExcerptSearcher = new Search("../files/short_excerpt.txt")
+//const shortExcerptSearcher = new Search("../files/short_excerpt.txt")
 const longExcerptSearcher = new Search("../files/long_excerpt.txt")
 const assert = require('assert');
 
