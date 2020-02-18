@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="42690473-2328-46ab-869a-3ede18ee6c92" name="Default Changelist" comment="" />
+    <list default="true" id="98c4323f-4af2-4077-a07e-6563a09840da" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextSearcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextSearcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextTokenizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextTokenizer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search/TextSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/TextSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/search/TextTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/TextTokenizer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +21,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.TextSearcherTest">
     <configuration name="TextSearcherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TextSearchProblem" />
       <extension name="coverage">
@@ -31,9 +37,77 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TextSearcherTest.testApostropheQuery" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TextSearchProblem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="search" />
+      <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
+      <option name="METHOD_NAME" value="testApostropheQuery" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextSearcherTest.testCaseInsensitiveSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TextSearchProblem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="search" />
+      <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
+      <option name="METHOD_NAME" value="testCaseInsensitiveSearch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextSearcherTest.testMixedQuery" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TextSearchProblem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="search" />
+      <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
+      <option name="METHOD_NAME" value="testMixedQuery" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextSearcherTest.testNumericQuery" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TextSearchProblem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="search" />
+      <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
+      <option name="METHOD_NAME" value="testNumericQuery" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TextSearcherTest" />
+        <item itemvalue="JUnit.TextSearcherTest.testCaseInsensitiveSearch" />
+        <item itemvalue="JUnit.TextSearcherTest.testApostropheQuery" />
+        <item itemvalue="JUnit.TextSearcherTest.testNumericQuery" />
+        <item itemvalue="JUnit.TextSearcherTest.testMixedQuery" />
       </list>
     </recent_temporary>
   </component>
@@ -51,6 +125,30 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="100" y="123" width="1240" height="677" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1582000130230">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="100" y="123" width="1240" height="677" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.877@0.23.1440.877" timestamp="1582000130230" />
+    <state width="736" height="756" key="GridCell.Tab.0.bottom" timestamp="1582005011355">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="736" height="756" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582005011355" />
+    <state width="1440" height="850" key="GridCell.Tab.0.bottom/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1581986175745" />
+    <state width="736" height="756" key="GridCell.Tab.0.center" timestamp="1582005011355">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="736" height="756" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582005011355" />
+    <state width="1440" height="850" key="GridCell.Tab.0.center/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1581986175744" />
+    <state width="736" height="756" key="GridCell.Tab.0.left" timestamp="1582005011354">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="736" height="756" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582005011354" />
+    <state width="1440" height="850" key="GridCell.Tab.0.left/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1581986175743" />
+    <state width="736" height="756" key="GridCell.Tab.0.right" timestamp="1582005011355">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="736" height="756" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582005011355" />
+    <state width="1440" height="850" key="GridCell.Tab.0.right/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1581986175744" />
     <state x="945" y="346" key="run.anything.popup" timestamp="1581982497043">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>

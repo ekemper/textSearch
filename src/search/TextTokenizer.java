@@ -34,7 +34,6 @@ public class TextTokenizer implements Iterator<String> {
 	 */
 	public TextTokenizer(String input,String wordRegex) {
 		this.input = input;
-		
 		this.wordPattern = Pattern.compile(wordRegex);
 		this.matcher = wordPattern.matcher(input);
 	}
