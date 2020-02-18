@@ -63,7 +63,7 @@ public class TextSearcher {
 
 		wordRegex =
 				leftContext +
-				"\\b(" + queryWord + ")\\b" +
+				"\\b((?i)" + queryWord + ")\\b" +
 				rightContext;
 
 		System.out.println("wordRegex : " + wordRegex);
@@ -76,10 +76,10 @@ public class TextSearcher {
 		while(tokenizer.hasNext()){
 
 			next = tokenizer.next();
-
+			System.out.println("next : " + next);
 
 			if(tokenizer.isWord(next)){
-				System.out.println("match : " + next);
+				System.out.println("match !! ");
 				result.add(next);
 			}
 		}

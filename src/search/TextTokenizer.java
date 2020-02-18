@@ -79,7 +79,36 @@ public class TextTokenizer implements Iterator<String> {
 	public boolean isWord(String s) {
 		return wordPattern.matcher(s).matches();
 	}
-	
+
+	/**
+	 * Returns ...
+	 */
+	public boolean find() {
+		return this.matcher.find();
+	}
+
+	/**
+	 * Returns ...
+	 */
+	public int matchStart() {
+		return this.matcher.start();
+	}
+
+	/**
+	 * Returns ...
+	 */
+	public int matchEnd() {
+		return this.matcher.end();
+	}
+
+	/**
+	 * Returns ...
+	 * @return
+	 */
+	public String group() {
+		return this.matcher.group(1);
+	}
+
 	private void retrieveNext() {
 		if (matcher == null) return;
 		if (matcher.find()) {
