@@ -20,7 +20,7 @@ public class TextTokenizer implements Iterator<String> {
 
 	private String input;
 	private Pattern wordPattern;
-	private Matcher matcher;
+	public Matcher matcher;
 	private int prevWordEnd;
 	private String nextPunctuation;
 	private String nextWord;
