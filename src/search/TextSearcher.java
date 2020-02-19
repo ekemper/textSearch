@@ -1,5 +1,6 @@
 package search;
 
+import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -88,40 +89,73 @@ public class TextSearcher {
 	}
 
 	private String formContextStringForMatch(ValueElement match){
+		System.out.println("\n\ncalled formContextStringForMatch");
+
+		System.out.println("-- wordStart: "+ match.wordStart);
 		System.out.println("-- previousWord: "+ match.previousWord);
 		System.out.println("-- startIndex: "+ match.previousStartIndex);
 		System.out.println("-- nextWord: "+ match.nextWord);
 		System.out.println("-- startIndex: "+ match.nextStartIndex);
 
 		if(contextWordsCount > 0){
-			return leftContext(match) + queryWord + rightContext(match);
+			String result = leftContext(match) + queryWord + rightContext(match);
+			System.out.println("\nresult: "+ result);
+			return result;
 		}
 
 		return queryWord;
 	}
 
 	private String leftContext(ValueElement match){
+		System.out.println("\ncalled leftContext");
+
 		String leftMostWord = match.previousWord;
-		int leftMostWordStartIndex = 0;
-		HashValue nextMatch;
-		ValueElement nextPreviousWordElem;
+		HashValue previousWordMatches;
+		ValueElement nearestPreviousWordElem = null;
 
 		for (int i = 0; i < contextWordsCount; i++) {
-			nextMatch = map.get(leftMostWord);
-			nextPreviousWordElem = getNextPreviousWordEle(nextMatch);
+			previousWordMatches = map.get(leftMostWord);
+			nearestPreviousWordElem = getNearestPreviousWordEle(previousWordMatches, match.wordStart);
+			leftMostWord = nearestPreviousWordElem.previousWord;
+			// after 'contextWordsCount' iterations here, nearestPreviousWordEle will
+			// be the ValueElement that represents the leftmost word in the left context string
 		}
 
+		int leftMostWordStartIndex = nearestPreviousWordElem.wordStart;
+		System.out.println("\nleftMostStartingIndex: "+ leftMostWordStartIndex);
+		System.out.println("match.wordStart: "+ match.wordStart);
 
 		return text.substring(leftMostWordStartIndex, match.wordStart);
 	}
 
-	private ValueElement getNextPreviousWordEle(HashValue match){
-		// find the element in the hash value array whos
+	private ValueElement getNearestPreviousWordEle(HashValue previousWordMatches, int wordStart){
+		System.out.println("\ncalled getNearestPreviousWordEle");
+
+
+		// find the element in the hash value array who's
 		// previousWordStart is the next lesser value compared
 		// to the wordStart index for hashValue that is passed in.
-		for (int i = 0; i < match.value.size(); i++) {
-			
+		int greatestPreviousWordStart = 0;
+		int greatestPreviousWordStartIndex = 0;
+
+		for (int i = 0; i < previousWordMatches.value.size(); i++) {
+
+			int ithPreviousStartIndex = previousWordMatches.value.get(i).previousStartIndex;
+
+			if((greatestPreviousWordStart < ithPreviousStartIndex) && (ithPreviousStartIndex < wordStart)){
+				greatestPreviousWordStart = ithPreviousStartIndex;
+				greatestPreviousWordStartIndex = i;
+			}
 		}
+
+		ValueElement result = previousWordMatches.value.get(greatestPreviousWordStartIndex);
+
+		System.out.println("getNearestPreviousWordEle , result: ");
+		System.out.println("--- wordStart: "+ result.wordStart);
+		System.out.println("--- previousWord: "+ result.previousWord);
+		System.out.println("--- previousStartIndex: "+ result.previousStartIndex);
+
+		return result;
 	}
 
 	private String rightContext(ValueElement match){
@@ -144,7 +178,12 @@ class HashMapGenerator {
 
 		while(tokenizer.hasNext()){
 			String currentWord = tokenizer.next();
-			int currentWordStart = tokenizer.matcher.start();
+
+			int currentWordStart = 0;
+			if(tokenizer.matcher != null){
+				currentWordStart = tokenizer.matcher.start();
+			}
+
 			addNextWordToPreviousWordValue(currentWord);
 
 //			if(tokenizer.matcher != null){
