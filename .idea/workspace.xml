@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="98c4323f-4af2-4077-a07e-6563a09840da" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextSearcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextSearcher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextTokenizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextSearchProblem/search/TextTokenizer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TextSearchProblem/search/HashMapGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TextSearchProblem/search/HashMapGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/search/TextSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/TextSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/search/TextTokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/search/TextTokenizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,11 +15,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XxKkgovh9c6xeInEhoktb2EvXx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="JUnit.TextSearcherTest.testOneHitNoContext">
+  <component name="RunManager" selected="JUnit.TextSearcherTest.testBasicSearch">
     <configuration name="TextSearcherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TextSearchProblem" />
       <extension name="coverage">
@@ -33,6 +36,22 @@
       <option name="PACKAGE_NAME" value="search" />
       <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextSearcherTest.testBasicSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TextSearchProblem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="search" />
+      <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
+      <option name="METHOD_NAME" value="testBasicSearch" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -55,6 +74,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TextSearcherTest.testBasicSearch" />
         <item itemvalue="JUnit.TextSearcherTest.testOneHitNoContext" />
         <item itemvalue="JUnit.TextSearcherTest" />
       </list>
@@ -65,7 +85,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="42690473-2328-46ab-869a-3ede18ee6c92" name="Default Changelist" comment="" />
+      <changelist id="98c4323f-4af2-4077-a07e-6563a09840da" name="Default Changelist" comment="" />
       <created>1581982449932</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -74,26 +94,46 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="643" height="756" key="GridCell.Tab.0.bottom" timestamp="1582076559386">
+    <state width="592" height="756" key="GridCell.Tab.0.bottom" timestamp="1582083603549">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="643" height="756" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582076559386" />
+    <state width="592" height="756" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582083603549" />
     <state width="802" height="1296" key="GridCell.Tab.0.bottom/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619566" />
-    <state width="643" height="756" key="GridCell.Tab.0.center" timestamp="1582076559385">
+    <state width="592" height="756" key="GridCell.Tab.0.center" timestamp="1582083603548">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="643" height="756" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582076559385" />
+    <state width="592" height="756" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582083603548" />
     <state width="802" height="1296" key="GridCell.Tab.0.center/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619565" />
-    <state width="643" height="756" key="GridCell.Tab.0.left" timestamp="1582076559385">
+    <state width="592" height="756" key="GridCell.Tab.0.left" timestamp="1582083603548">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="643" height="756" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582076559385" />
+    <state width="592" height="756" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582083603548" />
     <state width="802" height="1296" key="GridCell.Tab.0.left/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619564" />
-    <state width="643" height="756" key="GridCell.Tab.0.right" timestamp="1582076559385">
+    <state width="592" height="756" key="GridCell.Tab.0.right" timestamp="1582083603548">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="643" height="756" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582076559385" />
+    <state width="592" height="756" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582083603548" />
     <state width="802" height="1296" key="GridCell.Tab.0.right/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619565" />
+    <state width="2518" height="501" key="GridCell.Tab.1.bottom" timestamp="1582076843122">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="2518" height="501" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582076843122" />
+    <state width="2518" height="501" key="GridCell.Tab.1.center" timestamp="1582076843121">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="2518" height="501" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1582076843121" />
+    <state width="2518" height="501" key="GridCell.Tab.1.left" timestamp="1582076843121">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="2518" height="501" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1582076843121" />
+    <state width="2518" height="501" key="GridCell.Tab.1.right" timestamp="1582076843121">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="2518" height="501" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1582076843121" />
+    <state x="397" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1582076868507">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="397" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1582076868507" />
     <state x="945" y="346" key="run.anything.popup" timestamp="1581982497043">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>

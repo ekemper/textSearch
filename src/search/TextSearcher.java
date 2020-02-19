@@ -8,12 +8,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import com.sun.tools.corba.se.idl.StringGen;
 import	search.TextTokenizer;
+
+import javax.swing.*;
 
 public class TextSearcher {
 	private static TextTokenizer tokenizer;
 	private String wordRegex = "-?\\d+|\\b([a-zA-Z]+'[a-zA-Z]+)\\b|\\w+";
 	HashMap<String, HashValue> map = new HashMap<>();
+	int contextWordsCount;
+	String queryWord;
+	String text;
 
 	/**
 	 * Initializes the text searcher with the contents of a text file.
@@ -41,8 +47,8 @@ public class TextSearcher {
 	 *  this class to implement search efficiently.
 	 */
 	protected void init(String fileContents) {
-		tokenizer = new TextTokenizer(fileContents, wordRegex);
-
+		text = fileContents;
+		tokenizer = new TextTokenizer(text, wordRegex);
 		HashMapGenerator hashGenerator = new HashMapGenerator(tokenizer);
 		map = hashGenerator.map;
 //		System.out.println("map: "+ map);
@@ -50,12 +56,17 @@ public class TextSearcher {
 
 	/**
 	 * 
-	 * @param queryWord The word to search for in the file contents.
+	 * @param word The word to search for in the file contents.
 	 * @param contextWords The number of words of context to provide on
 	 *                     each side of the query word.
 	 * @return One context string for each time the query word appears in the file.
 	 */
-	public String[] search(String queryWord,int contextWords) {
+	public String[] search(String word,int contextWords) {
+		contextWordsCount = contextWords; /// TODO this could be cleaner
+		queryWord = word;
+		System.out.println("queryWord: "+ queryWord);
+		System.out.println("contextWords: "+ contextWords);
+
 
 		HashValue matches = map.get(queryWord);
 		if(matches != null){
@@ -77,11 +88,44 @@ public class TextSearcher {
 	}
 
 	private String formContextStringForMatch(ValueElement match){
-		String result = "";
+		System.out.println("-- previousWord: "+ match.previousWord);
+		System.out.println("-- startIndex: "+ match.previousStartIndex);
+		System.out.println("-- nextWord: "+ match.nextWord);
+		System.out.println("-- startIndex: "+ match.nextStartIndex);
 
-		System.out.println("match: "+ match);
+		if(contextWordsCount > 0){
+			return leftContext(match) + queryWord + rightContext(match);
+		}
 
-		return result;
+		return queryWord;
+	}
+
+	private String leftContext(ValueElement match){
+		String leftMostWord = match.previousWord;
+		int leftMostWordStartIndex = 0;
+		HashValue nextMatch;
+		ValueElement nextPreviousWordElem;
+
+		for (int i = 0; i < contextWordsCount; i++) {
+			nextMatch = map.get(leftMostWord);
+			nextPreviousWordElem = getNextPreviousWordEle(nextMatch);
+		}
+
+
+		return text.substring(leftMostWordStartIndex, match.wordStart);
+	}
+
+	private ValueElement getNextPreviousWordEle(HashValue match){
+		// find the element in the hash value array whos
+		// previousWordStart is the next lesser value compared
+		// to the wordStart index for hashValue that is passed in.
+		for (int i = 0; i < match.value.size(); i++) {
+			
+		}
+	}
+
+	private String rightContext(ValueElement match){
+		return " right";
 	}
 }
 
@@ -100,6 +144,8 @@ class HashMapGenerator {
 
 		while(tokenizer.hasNext()){
 			String currentWord = tokenizer.next();
+			int currentWordStart = tokenizer.matcher.start();
+			addNextWordToPreviousWordValue(currentWord);
 
 //			if(tokenizer.matcher != null){
 //				System.out.println("tokenizer.matcher.start(): "+ tokenizer.matcher.start());
@@ -107,29 +153,64 @@ class HashMapGenerator {
 //
 //			System.out.println("tokenizer.matcher: "+ tokenizer.matcher);
 
-			if(tokenizer.matcher != null && tokenizer.matcher.start() == 0){
+			if(tokenizer.matcher != null && currentWordStart == 0){
 				// handle first word...
 			}
 
 			if(tokenizer.isWord(currentWord)){
-				addToMap(currentWord);
+				//System.out.println("currentWord: "+ currentWord);
+
+				addToMap(currentWord, currentWordStart);
 
 				// get ready for the next iteration:
 				previousWord = currentWord;
-				previousWordStart = tokenizer.matcher.start();
+				previousWordStart = currentWordStart;
 			}
 		}
 	}
 
-	private void addToMap(String wordKey){
-		ValueElement newElement = new ValueElement(previousWord, previousWordStart);
+	private void addNextWordToPreviousWordValue(String currentWord){
+		//go back and add 'currentWord' as the next word relative to previousWord ?!?!?
+		// ... i promise it will all make sense
+		if(previousWord != null && tokenizer.matcher != null){
+			// If the previous word has multiple ValueElements in it's HashValue array,
+			// we need to add 'currentWord' to the ValueElement whose previousWordStart is the largest
+			HashValue previousWordValues = map.get(previousWord);
+
+			previousWordValues.updateMaxPrevWordStartElem(currentWord, tokenizer.matcher.start());
+
+			map.replace(previousWord, previousWordValues);
+		}
+
+	}
+
+	private void addToMap(String wordKey, int wordStart){
+		ValueElement newElement = new ValueElement(
+				wordStart,
+			previousWord,
+			previousWordStart
+		);
+
 		HashValue existingValue = map.get(wordKey);
 
+//		System.out.println("\n\nwordkey: "+ wordKey);
+
 		if(existingValue != null){
+//			System.out.println("adding element to existing value ");
+//			System.out.println("existingValue: "+ existingValue);
+//			for (int i = 0; i < existingValue.value.size(); i++) {
+//				System.out.println("-- existingValue.value.get(i).wordKey: " + existingValue.value.get(i).wordKey +":"+ existingValue.value.get(i).startIndex);
+//			}
+//			System.out.println("adding new element: "+ newElement);
+//			System.out.println("-- wordKey: "+ newElement.wordKey);
+//			System.out.println("-- startIndex: "+ newElement.startIndex);
+
 			existingValue.add(newElement);
 			map.replace(wordKey, existingValue);
+
 		}else{
-			HashValue newValue = new HashValue(newElement);
+			HashValue newValue = new HashValue();
+//			System.out.println("creating new value with new element : " + newElement.wordKey + ":"+ newElement.startIndex);
 			newValue.add(newElement);
 			map.put(wordKey, newValue);
 		}
@@ -137,26 +218,46 @@ class HashMapGenerator {
 	}
 }
 
-
 class HashValue {
 	public ArrayList<ValueElement> value;
-	HashValue(ValueElement newElement){
+	HashValue(){
 		value = new ArrayList<ValueElement>();
-		value.add(newElement);
 	}
 
 	public void add(ValueElement newElement){
 		value.add(newElement);
 	}
+
+	public void updateMaxPrevWordStartElem(String nextWord, int nextStartIndex){
+		int maxPrevWordStartElemIndex = 0;
+		boolean newMax;
+		for (int i = 0; i < value.size(); i++) {
+			newMax = value.get(maxPrevWordStartElemIndex).previousStartIndex < value.get(i).previousStartIndex;
+			if(newMax){
+				maxPrevWordStartElemIndex = i;
+			}
+		}
+
+		ValueElement maxPrevWordStartElem = value.get(maxPrevWordStartElemIndex);
+		maxPrevWordStartElem.nextWord = nextWord;
+		maxPrevWordStartElem.nextStartIndex = nextStartIndex;
+		value.set(maxPrevWordStartElemIndex, maxPrevWordStartElem);
+	}
 }
 
 class ValueElement {
-	String wordKey;
-	int startIndex;
+	int wordStart;
+	String previousWord;
+	int previousStartIndex;
+	String nextWord;
+	int nextStartIndex;
 
-	public ValueElement(String wordKey, int startIndex){
-		this.wordKey = wordKey;
-		this.startIndex = startIndex;
+	public ValueElement(int wordStart, String previousWord, int previousStartIndex){
+		this.wordStart = wordStart;
+		this.previousWord = previousWord;
+		this.previousStartIndex = previousStartIndex;
+		this.nextWord = null;
+		this.nextStartIndex = 0;
 	}
 }
 
