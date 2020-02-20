@@ -20,6 +20,7 @@ public class TextSearcher {
 	HashMap<String, HashValue> map = new HashMap<>();
 	int contextWordsCount;
 	String queryWord;
+	String originalCaseQueryWord;
 	String text;
 
 	/**
@@ -64,7 +65,8 @@ public class TextSearcher {
 	 */
 	public String[] search(String word,int contextWords) {
 		contextWordsCount = contextWords; /// TODO this could be cleaner
-		queryWord = word;
+		originalCaseQueryWord = word;
+		queryWord = word.toLowerCase();
 		System.out.println("queryWord: "+ queryWord);
 		System.out.println("contextWords: "+ contextWords);
 
@@ -72,6 +74,7 @@ public class TextSearcher {
 		HashValue matches = map.get(queryWord);
 		if(matches != null){
 			ArrayList<String> result = handleMatches(matches);
+			System.out.println("result: " + result);
 			return result.toArray(new String[result.size()]);
 		}else {
 			return new String[0];
@@ -80,23 +83,22 @@ public class TextSearcher {
 
 	private ArrayList<String> handleMatches(HashValue matches){
 		ArrayList<String> result = new ArrayList<>();
-		String fullString = "";
-
 		for (int i = 0; i < matches.value.size(); i++) {
 
 			if(contextWordsCount > 0) {
 				ValueElement match = matches.value.get(i);
-				result.add( leftContext(match) + queryWord + rightContext(match) );
+
+				result.add(text.substring(leftContextStartIndex(match), rightContextStartIndex(match)));
 
 			} else {
-				result.add(queryWord);
+				result.add(originalCaseQueryWord);
 			}
 		}
 
 		return result;
 	}
 
-	private String leftContext(ValueElement match){
+	private int leftContextStartIndex(ValueElement match){
 		String leftMostWord = match.previousWord;
 		HashValue previousWordMatches;
 		ValueElement nearestPreviousWordElem = null;
@@ -104,14 +106,18 @@ public class TextSearcher {
 		for (int i = 0; i < contextWordsCount; i++) {
 			previousWordMatches = map.get(leftMostWord);
 
-			nearestPreviousWordElem = getNearestPreviousWordEle(previousWordMatches, match.wordStart);
-			leftMostWord = nearestPreviousWordElem.previousWord;
+			if (previousWordMatches != null){
+				nearestPreviousWordElem = getNearestPreviousWordEle(previousWordMatches, match.wordStart);
+				if(nearestPreviousWordElem.previousWord != null){
+					leftMostWord = nearestPreviousWordElem.previousWord;
+				}
+			}
+
 			// after 'contextWordsCount' iterations here, nearestPreviousWordEle will
 			// be the ValueElement that represents the leftmost word in the left context string
 		}
 
-		int leftMostWordStartIndex = nearestPreviousWordElem.wordStart;
-		return text.substring(leftMostWordStartIndex, match.wordStart);
+		return nearestPreviousWordElem.wordStart;
 	}
 
 	private ValueElement getNearestPreviousWordEle(HashValue previousWordMatches, int wordStart){
@@ -133,23 +139,26 @@ public class TextSearcher {
 		return previousWordMatches.value.get(greatestPreviousWordStartIndex);
 	}
 
-	private String rightContext(ValueElement initialQueryWordMatch) {
+	private int rightContextStartIndex(ValueElement initialQueryWordMatch) {
 		String currentContextWord = initialQueryWordMatch.nextWord;
 		int currentContextWordIndex = initialQueryWordMatch.nextStartIndex;
 		HashValue nextMatches;
 
 		for (int i = 0; i < contextWordsCount-1; i++) {
 			nextMatches = map.get(currentContextWord);
-			ValueElement nextWordMatch = findNextWordMatch(nextMatches, currentContextWord, currentContextWordIndex);
-			currentContextWord = nextWordMatch.nextWord;
-			currentContextWordIndex = nextWordMatch.nextStartIndex;
+			if(nextMatches != null){
+
+				ValueElement nextWordMatch = findNextWordMatch(nextMatches, currentContextWord, currentContextWordIndex);
+
+				if(nextWordMatch.nextWord != null){
+					currentContextWord = nextWordMatch.nextWord;
+					currentContextWordIndex = nextWordMatch.nextStartIndex;
+				}
+			}
 		}
 
-		int rightContextStartIndex = initialQueryWordMatch.wordStart + initialQueryWordMatch.word.length();
-		int rightContextEndIndex = currentContextWordIndex + currentContextWord.length();
-		return text.substring(rightContextStartIndex , rightContextEndIndex);
+		return currentContextWordIndex + currentContextWord.length();
 	}
-
 
 	private ValueElement findNextWordMatch(HashValue nextMatches, String currentContextWord, int currentContextWordIndex){
 		// from these matches, we need to find the one that comes directly after
@@ -183,7 +192,7 @@ class HashMapGenerator {
 	private void populateHashMap(){
 
 		while(tokenizer.hasNext()){
-			String currentWord = tokenizer.next();
+			String currentWord = tokenizer.next().toLowerCase();
 
 			int currentWordStart = 0;
 			if(tokenizer.matcher != null){
@@ -192,19 +201,7 @@ class HashMapGenerator {
 
 			addNextWordToPreviousWordValue(currentWord);
 
-//			if(tokenizer.matcher != null){
-//				System.out.println("tokenizer.matcher.start(): "+ tokenizer.matcher.start());
-//			}
-//
-//			System.out.println("tokenizer.matcher: "+ tokenizer.matcher);
-
-			if(tokenizer.matcher != null && currentWordStart == 0){
-				// handle first word...
-			}
-
 			if(tokenizer.isWord(currentWord)){
-				//System.out.println("currentWord: "+ currentWord);
-
 				addToMap(currentWord, currentWordStart);
 
 				// get ready for the next iteration:
@@ -221,18 +218,15 @@ class HashMapGenerator {
 			// If the previous word has multiple ValueElements in it's HashValue array,
 			// we need to add 'currentWord' to the ValueElement whose previousWordStart is the largest
 			HashValue previousWordValues = map.get(previousWord);
-
 			previousWordValues.updateMaxPrevWordStartElem(currentWord, tokenizer.matcher.start());
-
 			map.replace(previousWord, previousWordValues);
 		}
-
 	}
 
 	private void addToMap(String wordKey, int wordStart){
 		ValueElement newElement = new ValueElement(
-				wordKey,
-				wordStart,
+			wordKey,
+			wordStart,
 			previousWord,
 			previousWordStart
 		);
@@ -245,11 +239,9 @@ class HashMapGenerator {
 
 		}else{
 			HashValue newValue = new HashValue();
-//			System.out.println("creating new value with new element : " + newElement.wordKey + ":"+ newElement.startIndex);
 			newValue.add(newElement);
 			map.put(wordKey, newValue);
 		}
-//		System.out.println("key: "+ newKey + ", " + "start: "+ start);
 	}
 }
 
@@ -281,11 +273,8 @@ class HashValue {
 
 	public void print(){
 		System.out.println("--------------------------------------------");
-
 		for (int i = 0; i < value.size(); i++) {
-
 			System.out.println("\nvalue["+i+"]: "+ value.get(i));
-
 			value.get(i).print();
 		}
 	}

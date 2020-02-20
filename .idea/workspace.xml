@@ -24,7 +24,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RunManager" selected="JUnit.TextSearcherTest.testNearBeginning">
+  <component name="RunManager" selected="JUnit.TextSearcherTest">
     <configuration name="TextSearcherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TextSearchProblem" />
       <extension name="coverage">
@@ -56,6 +56,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TextSearcherTest.testCaseInsensitiveSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TextSearchProblem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="search" />
+      <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
+      <option name="METHOD_NAME" value="testCaseInsensitiveSearch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TextSearcherTest.testNearBeginning" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TextSearchProblem" />
       <extension name="coverage">
@@ -72,7 +88,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TextSearcherTest.testOneHitNoContext" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TextSearcherTest.testNearEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TextSearchProblem" />
       <extension name="coverage">
         <pattern>
@@ -82,7 +98,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="search" />
       <option name="MAIN_CLASS_NAME" value="search.TextSearcherTest" />
-      <option name="METHOD_NAME" value="testOneHitNoContext" />
+      <option name="METHOD_NAME" value="testNearEnd" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -90,10 +106,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TextSearcherTest.testNearBeginning" />
         <item itemvalue="JUnit.TextSearcherTest" />
+        <item itemvalue="JUnit.TextSearcherTest.testCaseInsensitiveSearch" />
+        <item itemvalue="JUnit.TextSearcherTest.testNearEnd" />
+        <item itemvalue="JUnit.TextSearcherTest.testNearBeginning" />
         <item itemvalue="JUnit.TextSearcherTest.testBasicSearch" />
-        <item itemvalue="JUnit.TextSearcherTest.testOneHitNoContext" />
       </list>
     </recent_temporary>
   </component>
@@ -111,42 +128,46 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="299" key="GridCell.Tab.0.bottom" timestamp="1582160244373">
+    <state x="100" y="123" width="1240" height="677" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1582162259753">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582160244373" />
+    <state x="100" y="123" width="1240" height="677" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.1440.877@0.23.1440.877" timestamp="1582162259753" />
+    <state width="496" height="756" key="GridCell.Tab.0.bottom" timestamp="1582163624003">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="496" height="756" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582163624003" />
     <state width="802" height="1296" key="GridCell.Tab.0.bottom/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619566" />
-    <state width="1398" height="299" key="GridCell.Tab.0.center" timestamp="1582160244371">
+    <state width="496" height="756" key="GridCell.Tab.0.center" timestamp="1582163624002">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582160244371" />
+    <state width="496" height="756" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1582163624002" />
     <state width="802" height="1296" key="GridCell.Tab.0.center/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619565" />
-    <state width="1398" height="299" key="GridCell.Tab.0.left" timestamp="1582160244371">
+    <state width="496" height="756" key="GridCell.Tab.0.left" timestamp="1582163624001">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582160244371" />
+    <state width="496" height="756" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1582163624001" />
     <state width="802" height="1296" key="GridCell.Tab.0.left/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619564" />
-    <state width="1398" height="299" key="GridCell.Tab.0.right" timestamp="1582160244372">
+    <state width="496" height="756" key="GridCell.Tab.0.right" timestamp="1582163624002">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582160244372" />
+    <state width="496" height="756" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1582163624002" />
     <state width="802" height="1296" key="GridCell.Tab.0.right/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1582065619565" />
-    <state width="1398" height="299" key="GridCell.Tab.1.bottom" timestamp="1582160244521">
+    <state width="496" height="364" key="GridCell.Tab.1.bottom" timestamp="1582163622371">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582160244521" />
-    <state width="1398" height="299" key="GridCell.Tab.1.center" timestamp="1582160244520">
+    <state width="496" height="364" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1582163622371" />
+    <state width="496" height="364" key="GridCell.Tab.1.center" timestamp="1582163622371">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1582160244520" />
-    <state width="1398" height="299" key="GridCell.Tab.1.left" timestamp="1582160244519">
+    <state width="496" height="364" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1582163622371" />
+    <state width="496" height="364" key="GridCell.Tab.1.left" timestamp="1582163622370">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1582160244519" />
-    <state width="1398" height="299" key="GridCell.Tab.1.right" timestamp="1582160244520">
+    <state width="496" height="364" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1582163622370" />
+    <state width="496" height="364" key="GridCell.Tab.1.right" timestamp="1582163622371">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="299" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1582160244520" />
+    <state width="496" height="364" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1582163622371" />
     <state x="397" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1582076868507">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -155,21 +176,5 @@
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
     <state x="945" y="346" key="run.anything.popup/2560.457.1440.900/0.23.2560.1417@0.23.2560.1417" timestamp="1581982497043" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/search/TextSearcher.java</url>
-          <line>113</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/search/TextSearcher.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
