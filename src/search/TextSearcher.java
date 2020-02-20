@@ -67,14 +67,11 @@ public class TextSearcher {
 		contextWordsCount = contextWords; /// TODO this could be cleaner
 		originalCaseQueryWord = word;
 		queryWord = word.toLowerCase();
-		System.out.println("queryWord: "+ queryWord);
-		System.out.println("contextWords: "+ contextWords);
-
 
 		HashValue matches = map.get(queryWord);
 		if(matches != null){
 			ArrayList<String> result = handleMatches(matches);
-			System.out.println("result: " + result);
+//			System.out.println("result: " + result);
 			return result.toArray(new String[result.size()]);
 		}else {
 			return new String[0];
@@ -84,10 +81,8 @@ public class TextSearcher {
 	private ArrayList<String> handleMatches(HashValue matches){
 		ArrayList<String> result = new ArrayList<>();
 		for (int i = 0; i < matches.value.size(); i++) {
-
 			if(contextWordsCount > 0) {
 				ValueElement match = matches.value.get(i);
-
 				result.add(text.substring(leftContextStartIndex(match), rightContextStartIndex(match)));
 
 			} else {
@@ -112,7 +107,6 @@ public class TextSearcher {
 					leftMostWord = nearestPreviousWordElem.previousWord;
 				}
 			}
-
 			// after 'contextWordsCount' iterations here, nearestPreviousWordEle will
 			// be the ValueElement that represents the leftmost word in the left context string
 		}
@@ -150,9 +144,11 @@ public class TextSearcher {
 
 				ValueElement nextWordMatch = findNextWordMatch(nextMatches, currentContextWord, currentContextWordIndex);
 
-				if(nextWordMatch.nextWord != null){
+				if(nextWordMatch != null && nextWordMatch.nextWord != null){
 					currentContextWord = nextWordMatch.nextWord;
 					currentContextWordIndex = nextWordMatch.nextStartIndex;
+				} else {
+					return text.length();
 				}
 			}
 		}
@@ -174,7 +170,8 @@ public class TextSearcher {
 			}
 		}
 
-		throw new Error("ERROR: failed to find a matching next word for right context string!");
+		return null;
+		//throw new Error("ERROR: failed to find a matching next word for right context string!");
 	}
 }
 
